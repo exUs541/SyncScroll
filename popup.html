@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Sync Pro</title>
+  <style>
+    :root {
+      --primary: #0078d4;
+      --primary-hover: #005a9e;
+      --bg: #ffffff;
+      --surface: #f3f2f1;
+      --border: #edebe9;
+      --text: #323130;
+      --text-muted: #605e5c;
+      --danger: #d13438;
+      --danger-bg: #fde7e9;
+      --success: #107c10;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      width: 340px;
+      padding: 16px;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* ── Header ── */
+    h2 {
+      font-size: 16px;
+      margin: 0 0 16px 0;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    h3 {
+      font-size: 11px;
+      margin: 14px 0 6px 0;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      font-weight: 600;
+    }
+
+    /* ── Toggle Switch ── */
+    .switch { position: relative; display: inline-block; width: 34px; height: 20px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #bbb;
+      transition: .2s; border-radius: 20px;
+    }
+    .slider:before {
+      position: absolute; content: "";
+      height: 16px; width: 16px;
+      left: 2px; bottom: 2px;
+      background-color: white;
+      transition: .2s; border-radius: 50%;
+    }
+    input:checked + .slider { background-color: var(--primary); }
+    input:checked + .slider:before { transform: translateX(14px); }
+
+    /* ── Segmented Control ── */
+    .segmented-control {
+      display: flex;
+      background: var(--surface);
+      border-radius: 6px;
+      padding: 3px;
+      margin-bottom: 14px;
+    }
+    .segment-btn {
+      flex: 1; text-align: center;
+      padding: 6px 4px; font-size: 12px;
+      cursor: pointer; border-radius: 4px;
+      border: none; background: transparent;
+      color: var(--text-muted); font-weight: 600;
+      transition: all .15s ease;
+    }
+    .segment-btn.active {
+      background: var(--bg);
+      color: var(--primary);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+    }
+
+    /* ── Lists ── */
+    ul {
+      list-style: none; padding: 0; margin: 0 0 10px 0;
+      max-height: 180px; overflow-y: auto;
+      border: 1px solid var(--border); border-radius: 6px;
+    }
+    li {
+      font-size: 12px; padding: 8px 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    li:last-child { border-bottom: none; }
+
+    .tab-label {
+      white-space: nowrap; overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex; align-items: center; gap: 8px;
+      max-width: 100%; cursor: pointer;
+    }
+    .tab-favicon {
+      width: 14px; height: 14px;
+      border-radius: 2px; flex-shrink: 0;
+    }
+    .tab-title {
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+
+    /* ── Buttons ── */
+    button.primary-btn {
+      background: var(--primary); color: white;
+      border: none; padding: 9px 12px;
+      border-radius: 6px; cursor: pointer;
+      width: 100%; font-size: 13px; font-weight: 600;
+      transition: background .15s;
+    }
+    button.primary-btn:hover { background: var(--primary-hover); }
+    button.primary-btn:disabled { background: #bbb; cursor: default; }
+
+    button.icon-btn {
+      background: transparent; border: none;
+      color: var(--danger); cursor: pointer;
+      padding: 4px; border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background .15s;
+    }
+    button.icon-btn:hover { background: var(--danger-bg); }
+
+    /* ── Views ── */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    .info-box {
+      background: var(--surface); padding: 12px 14px;
+      border-radius: 6px; font-size: 12px;
+      color: var(--text-muted); line-height: 1.5;
+      border-left: 3px solid var(--primary);
+    }
+    .info-box strong { color: var(--text); }
+
+    /* ── Pair Items ── */
+    .pair-row {
+      display: flex; flex-direction: column; width: 100%;
+    }
+    .pair-top {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .pair-name {
+      flex-grow: 1; padding: 2px 4px;
+      border: 1px solid transparent; border-radius: 3px;
+      cursor: text; font-weight: 600; font-size: 12px;
+      color: var(--text); background: transparent;
+      font-family: inherit;
+    }
+    .pair-name:focus {
+      border-color: var(--primary); outline: none;
+      background: var(--bg);
+    }
+    .tab-count {
+      font-size: 11px; color: var(--text-muted);
+      background: var(--surface); padding: 2px 7px;
+      border-radius: 10px; margin-top: 3px;
+      display: inline-block;
+    }
+
+    /* ── Empty state ── */
+    .empty-state {
+      padding: 16px; text-align: center;
+      color: var(--text-muted); font-size: 12px;
+    }
+
+    /* ── Checkbox style ── */
+    input[type="checkbox"] {
+      accent-color: var(--primary);
+      width: 14px; height: 14px; flex-shrink: 0; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with master toggle -->
+  <h2>
+    <span>Scroll Sync Pro</span>
+    <label class="switch" title="Enable / Disable extension">
+      <input type="checkbox" id="masterToggle" checked>
+      <span class="slider"></span>
+    </label>
+  </h2>
+
+  <!-- Mode selector -->
+  <div class="segmented-control">
+    <button class="segment-btn active" data-mode="global">🌐 Global</button>
+    <button class="segment-btn" data-mode="targeted">🎯 Targeted</button>
+  </div>
+
+  <!-- Global mode view -->
+  <div id="view-global" class="view active">
+    <div class="info-box">
+      <strong>Global Sync Active</strong><br><br>
+      Scrolling in any tab will automatically mirror the position to all other open tabs. No manual setup required.
+    </div>
+  </div>
+
+  <!-- Targeted mode view -->
+  <div id="view-targeted" class="view">
+    <h3>Available Tabs</h3>
+    <ul id="tabList"></ul>
+    <button class="primary-btn" id="pairBtn" disabled>Create Sync Group</button>
+
+    <h3>Active Sync Groups</h3>
+    <ul id="pairList"></ul>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Scroll Sync Pro",
+  "version": "3.0.0",
+  "description": "Synchronize scrolling across multiple tabs — globally or in custom groups. Perfect for split-screen comparisons.",
+  "homepage_url": "https://github.com/enmel/scroll-sync-pro",
+  "icons": {
+    "16":  "icons/icon16.png",
+    "32":  "icons/icon32.png",
+    "48":  "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["tabs", "storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16":  "icons/icon16.png",
+      "32":  "icons/icon32.png",
+      "48":  "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Scroll Sync Pro"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
