@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Scroll Sync Pro",
+  "name": "Sync Scroll Pro - Tab Scroll Synchronizer",
   "version": "3.0.0",
-  "description": "Synchronize scrolling across multiple tabs — globally or in custom groups. Perfect for split-screen comparisons.",
+  "description": "Synchronize scrolling across multiple tabs – globally or in custom groups. Ideal for split-screen comparison & side-by-side view.",
   "homepage_url": "https://github.com/enmel/scroll-sync-pro",
   "icons": {
     "16":  "icons/icon16.png",
