@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Scroll Sync Pro</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 720px;
+      margin: 60px auto;
+      padding: 0 24px;
+      color: #1a1a2e;
+      line-height: 1.7;
+    }
+    h1 { font-size: 28px; margin-bottom: 4px; }
+    h2 { font-size: 18px; margin-top: 36px; color: #0057b8; }
+    .meta { color: #888; font-size: 14px; margin-bottom: 40px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 6px; }
+    .highlight {
+      background: #f0f7ff;
+      border-left: 4px solid #0078d4;
+      padding: 14px 18px;
+      border-radius: 4px;
+      margin: 24px 0;
+      font-weight: 500;
+    }
+    footer { margin-top: 60px; font-size: 13px; color: #aaa; border-top: 1px solid #eee; padding-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>Privacy Policy</h1>
+  <p class="meta">Scroll Sync Pro &nbsp;·&nbsp; Last updated: June 14, 2026</p>
+
+  <div class="highlight">
+    Scroll Sync Pro does not collect, transmit, or store any personal data. All functionality runs entirely within your browser.
+  </div>
+
+  <h2>1. Overview</h2>
+  <p>
+    Scroll Sync Pro ("the Extension") is a Chrome browser extension that synchronizes scroll positions across multiple open browser tabs. This Privacy Policy explains what data the Extension accesses, how it is used, and what it does not do.
+  </p>
+
+  <h2>2. Data We Do NOT Collect</h2>
+  <p>The Extension does <strong>not</strong> collect, record, transmit, or share:</p>
+  <ul>
+    <li>Browsing history or visited URLs</li>
+    <li>Page content or text on any website</li>
+    <li>Personally identifiable information (name, email, IP address, etc.)</li>
+    <li>Keystrokes, form inputs, or credentials</li>
+    <li>Any usage analytics or telemetry</li>
+  </ul>
+
+  <h2>3. Data Stored Locally</h2>
+  <p>The Extension uses <code>chrome.storage.local</code> exclusively to save your preferences on your own device:</p>
+  <ul>
+    <li><strong>isEnabled</strong> — whether the extension is active (true/false)</li>
+    <li><strong>syncMode</strong> — the selected mode ("global" or "targeted")</li>
+    <li><strong>pairs</strong> — your named sync groups with associated tab IDs</li>
+    <li><strong>globalTabs</strong> — the list of tab IDs currently registered for global sync</li>
+  </ul>
+  <p>
+    This data never leaves your device and is never transmitted to any external server.
+    Tab IDs are temporary browser-session identifiers assigned by Chrome — they contain no personal information.
+  </p>
+
+  <h2>4. Permissions Explained</h2>
+  <ul>
+    <li>
+      <strong>tabs</strong> — Used to read the IDs of open tabs so scroll events can be routed between them. No tab content, URLs, or titles are stored or transmitted.
+    </li>
+    <li>
+      <strong>storage</strong> — Used to persist your sync group configuration and settings locally on your device across browser sessions.
+    </li>
+    <li>
+      <strong>Content scripts (&lt;all_urls&gt;)</strong> — A lightweight script is injected into pages solely to listen to scroll events and receive scroll commands. It does not read, modify, or exfiltrate any page content.
+    </li>
+  </ul>
+
+  <h2>5. Third Parties</h2>
+  <p>
+    The Extension does not integrate with any third-party services, analytics platforms, or advertising networks. No data is shared with any third party under any circumstances.
+  </p>
+
+  <h2>6. Children's Privacy</h2>
+  <p>
+    The Extension does not knowingly collect any data from anyone, including children under the age of 13.
+  </p>
+
+  <h2>7. Changes to This Policy</h2>
+  <p>
+    If this Privacy Policy is updated, the new version will be published at this URL with a revised "Last updated" date. Continued use of the Extension after changes constitutes acceptance of the updated policy.
+  </p>
+
+  <h2>8. Contact</h2>
+  <p>
+    If you have any questions about this Privacy Policy, please open an issue on the
+    <a href="https://github.com/enmel/scroll-sync-pro">GitHub repository</a>.
+  </p>
+
+  <footer>
+    &copy; 2026 Scroll Sync Pro &nbsp;·&nbsp; MIT License &nbsp;·&nbsp;
+    <a href="https://github.com/enmel/scroll-sync-pro">GitHub</a>
+  </footer>
+
+</body>
+</html>
