@@ -19,7 +19,7 @@
       "48":  "icons/icon48.png",
       "128": "icons/icon128.png"
     },
-    "default_title": "Scroll Sync Pro"
+    "default_title": "Sync Scroll Pro"
   },
   "background": {
     "service_worker": "background.js"
