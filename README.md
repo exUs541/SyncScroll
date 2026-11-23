@@ -1,10 +1,10 @@
-# Scroll Sync Pro
+# Sync Scroll Pro
 
 > Synchronize scrolling across multiple browser tabs — globally or in custom groups.
 
 ![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Available-brightgreen?logo=googlechrome)
 ![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue)
-![Version](https://img.shields.io/badge/version-3.0.0-informational)
+![Version](https://img.shields.io/badge/version-3.1.0-informational)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
@@ -40,10 +40,15 @@
 2. Click **Add to Chrome**
 3. Done!
 
+### From Microsoft Edge Add-ons
+1. Open the [Edge Add-ons listing](#) *(link will be added after publishing)*
+2. Click **Get**
+3. Done!
+
 ### Manual / Developer Install
 1. Download or clone this repository
-2. Open Chrome and navigate to `chrome://extensions`
-3. Enable **Developer Mode** (top right toggle)
+2. Open `chrome://extensions` (Chrome, Brave) or `edge://extensions` (Edge)
+3. Enable **Developer Mode**
 4. Click **Load unpacked** and select the project folder
 5. The extension icon appears in your toolbar
 
@@ -64,7 +69,7 @@
 5. Only tabs within the same group will mirror each other
 
 ### Split View
-Requires a browser with split view support (Chrome / Brave 140+).
+Requires a browser version that offers split view to extensions (tested with Brave 158 and Edge 158). Without it, everything else works and the split view section stays hidden.
 1. Open two tabs side by side in a split view
 2. Click the extension icon → **Selected tabs** — the split pair is suggested at the top, click **Link**
 3. Or turn on **Auto-sync split view**: every split view scrolls together automatically, nothing to link
