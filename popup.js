@@ -371,7 +371,8 @@ document.addEventListener('DOMContentLoaded', () => {
       span.className = 'tab-favicon blank';
       return span;
     };
-    if (!tab.favIconUrl) return blank();
+    // Browser-internal pages report icons like edge://theme/... that an extension page may not load.
+    if (!/^(https?|data):/i.test(tab.favIconUrl || '')) return blank();
     const img = document.createElement('img');
     img.className = 'tab-favicon';
     img.alt = '';
