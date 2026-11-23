@@ -15,12 +15,15 @@
 |---|---|
 | 🌐 **Global Mode** | All open tabs scroll together automatically — zero configuration |
 | 🎯 **Targeted Mode** | Create named sync groups with exactly the tabs you choose |
+| 🪟 **Split View** | Tabs shown side by side are suggested right away — link them with one click |
+| 🤖 **Auto-sync Split View** | Optional setting: tabs in a split view scroll together automatically, no linking needed |
 | 🔄 **Bi-directional** | Scroll in any synced tab and all others follow |
+| 📜 **Inner scrollers** | Also works on app-style pages where a container, not the page, scrolls |
 | ✏️ **Rename Groups** | Click any group name to rename it inline |
 | 🗑️ **Delete Groups** | Remove sync groups with one click |
 | ⚡ **Master Toggle** | Disable the entire extension instantly without uninstalling |
-| 💾 **Persistent State** | Groups and settings survive browser restarts |
-| 🧹 **Auto Cleanup** | Closed tabs are automatically removed from all groups |
+| 💾 **Persistent Settings** | Mode, master toggle and the split-view setting survive browser restarts |
+| 🧹 **Auto Cleanup** | Closed tabs are removed from groups; groups are cleared on browser restart (tab IDs change) |
 
 ---
 
@@ -55,10 +58,20 @@
 
 ### Targeted Mode
 1. Click the extension icon
-2. Switch to **Targeted** mode
+2. Switch to **Selected tabs**
 3. Tick the tabs you want to sync (select 2 or more)
-4. Click **Create Sync Group**
+4. Click **Link tabs**
 5. Only tabs within the same group will mirror each other
+
+### Split View
+Requires a browser with split view support (Chrome / Brave 140+).
+1. Open two tabs side by side in a split view
+2. Click the extension icon → **Selected tabs** — the split pair is suggested at the top, click **Link**
+3. Or turn on **Auto-sync split view**: every split view scrolls together automatically, nothing to link
+
+### Troubleshooting
+- **Nothing syncs on a tab:** browsers do not let extensions run on their own pages (`chrome://`, `brave://`, new-tab page) or on the Chrome Web Store. Those tabs are greyed out in the popup and cannot be linked.
+- **After updating the extension:** open tabs are picked up automatically — no page reload needed.
 
 ---
 
@@ -66,8 +79,9 @@
 
 | Permission | Reason |
 |---|---|
-| `tabs` | Read open tab IDs to route scroll events |
+| `tabs` | Read open tab IDs to route scroll events, and detect split views |
 | `storage` | Persist sync groups and settings across sessions |
+| `scripting` + host access (`<all_urls>`) | After an install or update, start the bundled scroll script in tabs that are already open |
 
 > No browsing history is accessed. No data leaves your browser.
 
@@ -78,9 +92,10 @@
 ```
 scroll-sync-pro/
 ├── manifest.json      # Extension manifest (MV3)
-├── background.js      # Service worker — routes scroll messages
+├── background.js      # Service worker — routes scroll messages, split view partners
 ├── content.js         # Injected into every page — sends/receives scroll events
 ├── popup.html         # Extension popup UI
+├── popup.css          # Popup styles (system light/dark theme)
 ├── popup.js           # Popup logic
 └── icons/
     ├── icon16.png

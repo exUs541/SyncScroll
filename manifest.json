@@ -10,7 +10,8 @@
     "48":  "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "permissions": ["tabs", "storage"],
+  "permissions": ["tabs", "storage", "scripting"],
+  "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

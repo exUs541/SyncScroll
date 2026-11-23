@@ -32,7 +32,7 @@
 <body>
 
   <h1>Privacy Policy</h1>
-  <p class="meta">Scroll Sync Pro &nbsp;·&nbsp; Last updated: June 14, 2026</p>
+  <p class="meta">Scroll Sync Pro &nbsp;·&nbsp; Last updated: November 23, 2026</p>
 
   <div class="highlight">
     Scroll Sync Pro does not collect, transmit, or store any personal data. All functionality runs entirely within your browser.
@@ -59,7 +59,7 @@
     <li><strong>isEnabled</strong> — whether the extension is active (true/false)</li>
     <li><strong>syncMode</strong> — the selected mode ("global" or "targeted")</li>
     <li><strong>pairs</strong> — your named sync groups with associated tab IDs</li>
-    <li><strong>globalTabs</strong> — the list of tab IDs currently registered for global sync</li>
+    <li><strong>autoSplit</strong> — whether tabs shown side by side in a split view are synchronized automatically (true/false)</li>
   </ul>
   <p>
     This data never leaves your device and is never transmitted to any external server.
@@ -76,6 +76,9 @@
     </li>
     <li>
       <strong>Content scripts (&lt;all_urls&gt;)</strong> — A lightweight script is injected into pages solely to listen to scroll events and receive scroll commands. It does not read, modify, or exfiltrate any page content.
+    </li>
+    <li>
+      <strong>scripting and host access (&lt;all_urls&gt;)</strong> — Used once, right after the Extension is installed or updated, to start that same bundled scroll script in tabs that are already open, so you do not have to reload them. Only the Extension's own script is injected; no remote code is loaded and no page content is read.
     </li>
   </ul>
 
