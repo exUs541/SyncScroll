@@ -1,133 +1,108 @@
-# Sync Scroll Pro
+<p align="center"><img src="icons/icon128.png" width="96" alt="Sync Scroll Pro logo"></p>
 
-> Synchronize scrolling across multiple browser tabs — globally or in custom groups.
+<h1 align="center">Sync Scroll Pro</h1>
 
-![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Available-brightgreen?logo=googlechrome)
-![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue)
-![Version](https://img.shields.io/badge/version-3.1.0-informational)
-![License](https://img.shields.io/badge/license-MIT-green)
+<p align="center"><b>Synchronize scrolling across multiple browser tabs, globally or in custom groups.<br>Ideal for comparing documents, translations and pages side by side.</b></p>
 
----
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/mmnagcdibimlgbbdlkkdliojojignoda"><img alt="Chrome Web Store" src="https://img.shields.io/badge/Chrome%20Web%20Store-Install-4285F4?logo=googlechrome&logoColor=white"></a>
+  <a href="https://microsoftedge.microsoft.com/addons/detail/sync-scroll-pro-tab-scr/jagebhfpngcppjngngieadoljohgombf"><img alt="Microsoft Edge Add-ons" src="https://img.shields.io/badge/Edge%20Add--ons-Install-0078D4?logo=microsoftedge&logoColor=white"></a>
+  <a href="https://exus541.github.io/portfolio/details/syncscrollpro.html"><img alt="Website" src="https://img.shields.io/badge/Website-exus541.github.io-111827"></a>
+  <img alt="Manifest V3" src="https://img.shields.io/badge/Manifest-V3-34A853">
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-green"></a>
+</p>
 
-## ✨ Features
+<p align="center"><img src="store-assets/screenshots/screenshot-1-global-mode.png" alt="Sync Scroll Pro in global mode: all tabs scroll together" width="760"></p>
+
+## Features
 
 | Feature | Description |
 |---|---|
-| 🌐 **Global Mode** | All open tabs scroll together automatically — zero configuration |
-| 🎯 **Targeted Mode** | Create named sync groups with exactly the tabs you choose |
-| 🪟 **Split View** | Tabs shown side by side are suggested right away — link them with one click |
-| 🤖 **Auto-sync Split View** | Optional setting: tabs in a split view scroll together automatically, no linking needed |
-| 🔄 **Bi-directional** | Scroll in any synced tab and all others follow |
-| 📜 **Inner scrollers** | Also works on app-style pages where a container, not the page, scrolls |
-| ✏️ **Rename Groups** | Click any group name to rename it inline |
-| 🗑️ **Delete Groups** | Remove sync groups with one click |
-| ⚡ **Master Toggle** | Disable the entire extension instantly without uninstalling |
-| 💾 **Persistent Settings** | Mode, master toggle and the split-view setting survive browser restarts |
-| 🧹 **Auto Cleanup** | Closed tabs are removed from groups; groups are cleared on browser restart (tab IDs change) |
+| **Global mode** | All open tabs scroll together automatically, with nothing to set up. |
+| **Targeted mode** | Create named sync groups with exactly the tabs you choose. |
+| **Split view** | Tabs shown side by side are suggested right away; link them with one click. |
+| **Auto-sync split view** | Optional: tabs in a split view scroll together automatically, no linking needed. |
+| **Two-way sync** | Scroll in any synced tab and all the others follow. |
+| **Inner scrollers** | Also works on app-style pages where a container, not the page, scrolls. |
+| **Rename and delete groups** | Click a group name to rename it; remove a group with one click. |
+| **Master switch** | Pause everything instantly without uninstalling. |
+| **Remembered settings** | Mode, master switch and the split view option survive browser restarts. |
+| **Automatic cleanup** | Closed tabs are removed from groups. Groups are cleared when the browser restarts, because tab IDs change. |
 
----
-
-## 📸 Screenshot
-
-<!-- Add screenshot here after publishing -->
-
----
-
-## 🚀 Installation
-
-### From Chrome Web Store *(recommended)*
-1. Open the [Chrome Web Store listing](#) *(link will be added after publishing)*
-2. Click **Add to Chrome**
-3. Done!
-
-### From Microsoft Edge Add-ons
-1. Open the [Edge Add-ons listing](#) *(link will be added after publishing)*
-2. Click **Get**
-3. Done!
-
-### Manual / Developer Install
-1. Download or clone this repository
-2. Open `chrome://extensions` (Chrome, Brave) or `edge://extensions` (Edge)
-3. Enable **Developer Mode**
-4. Click **Load unpacked** and select the project folder
-5. The extension icon appears in your toolbar
-
----
-
-## 🎯 How to Use
-
-### Global Mode (default)
-1. Click the extension icon in your toolbar
-2. Make sure the master toggle is **ON**
-3. Keep **Global** selected — that's it. All tabs now scroll together.
-
-### Targeted Mode
-1. Click the extension icon
-2. Switch to **Selected tabs**
-3. Tick the tabs you want to sync (select 2 or more)
-4. Click **Link tabs**
-5. Only tabs within the same group will mirror each other
-
-### Split View
-Requires a browser version that offers split view to extensions (tested with Brave 158 and Edge 158). Without it, everything else works and the split view section stays hidden.
-1. Open two tabs side by side in a split view
-2. Click the extension icon → **Selected tabs** — the split pair is suggested at the top, click **Link**
-3. Or turn on **Auto-sync split view**: every split view scrolls together automatically, nothing to link
-
-### Troubleshooting
-- **Nothing syncs on a tab:** browsers do not let extensions run on their own pages (`chrome://`, `brave://`, new-tab page) or on the Chrome Web Store. Those tabs are greyed out in the popup and cannot be linked.
-- **After updating the extension:** open tabs are picked up automatically — no page reload needed.
-
----
-
-## 🔒 Permissions
-
-| Permission | Reason |
+| | |
 |---|---|
-| `tabs` | Read open tab IDs to route scroll events, and detect split views |
-| `storage` | Persist sync groups and settings across sessions |
-| `scripting` + host access (`<all_urls>`) | After an install or update, start the bundled scroll script in tabs that are already open |
+| ![Targeted mode](store-assets/screenshots/screenshot-2-targeted-mode.png) | ![Split view](store-assets/screenshots/screenshot-3-split-view.png) |
+| ![Light and dark theme](store-assets/screenshots/screenshot-4-light-and-dark.png) | |
 
-> No browsing history is accessed. No data leaves your browser.
+## Install
 
----
+- **Chrome, Brave and other Chromium browsers:** [Chrome Web Store](https://chromewebstore.google.com/detail/mmnagcdibimlgbbdlkkdliojojignoda)
+- **Microsoft Edge:** [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/sync-scroll-pro-tab-scr/jagebhfpngcppjngngieadoljohgombf)
+- **From source:** see [Development](#development).
 
-## 🏗️ Architecture
+## Getting started
 
-```
-scroll-sync-pro/
-├── manifest.json      # Extension manifest (MV3)
-├── background.js      # Service worker — routes scroll messages, split view partners
-├── content.js         # Injected into every page — sends/receives scroll events
-├── popup.html         # Extension popup UI
-├── popup.css          # Popup styles (system light/dark theme)
-├── popup.js           # Popup logic
-└── icons/
-    ├── icon16.png
-    ├── icon32.png
-    ├── icon48.png
-    └── icon128.png
-```
+**Global mode** (default)
 
-**Data flow:**
-```
-Tab A scrolls → content.js → background.js → content.js in Tab B → Tab B scrolls
-```
+1. Click the extension icon and make sure the master switch is on.
+2. Keep **All tabs** selected. Every open tab now scrolls together.
 
----
+**Targeted mode**
 
-## 🤝 Contributing
+1. Click the extension icon and switch to **Selected tabs**.
+2. Tick two or more tabs and click **Link tabs**.
+3. Only the tabs in the same group mirror each other.
 
-Pull requests are welcome! For major changes, please open an issue first.
+**Split view**
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/my-feature`)
-3. Commit your changes (`git commit -m 'Add my feature'`)
-4. Push to the branch (`git push origin feature/my-feature`)
-5. Open a Pull Request
+Needs a browser version that offers split view to extensions (tested with Brave 158 and Edge 158). Without it, everything else works and the split view section stays hidden.
 
----
+1. Open two tabs side by side in a split view.
+2. Click the extension icon, choose **Selected tabs**. The split pair is suggested at the top; click **Link**.
+3. Or turn on **Auto-sync split view**: every split view scrolls together automatically.
 
-## 📄 License
+**Troubleshooting**
 
-[MIT](LICENSE)
+- Nothing syncs on a tab: browsers do not let extensions run on their own pages (`chrome://`, `edge://`, the new tab page) or in the extension stores. Those tabs are greyed out in the popup and cannot be linked.
+- After updating the extension, open tabs are picked up automatically; no page reload is needed.
+
+## Permissions and privacy
+
+Everything runs locally on your device. No accounts, no tracking, no network requests, no browsing history. Read the [privacy policy](privacy-policy.html).
+
+| Permission | Why it is needed |
+|---|---|
+| `tabs` | list your open tabs, pass scroll positions between linked tabs and detect split views |
+| `storage` | remember your settings and groups on this device |
+| `scripting` and access to all sites | a page's scroll position can only be read from inside that page; after an install or update the bundled script is started in tabs that are already open |
+
+## Support
+
+- Questions, bugs or ideas: [open an issue](https://github.com/exUs541/SyncScroll/issues).
+- More about Sync Scroll Pro and the other extensions: [exus541.github.io/portfolio](https://exus541.github.io/portfolio/index.html), with a [feedback form](https://exus541.github.io/portfolio/feedback.html).
+
+## Development
+
+The extension runs straight from this folder, there is no build step.
+
+1. Clone the repository.
+2. Open `chrome://extensions` (or `edge://extensions`) and switch on **Developer mode**.
+3. Choose **Load unpacked** and select the repository folder.
+
+| Path | Purpose |
+|---|---|
+| `manifest.json` | extension manifest (Manifest V3) |
+| `background.js` | service worker: routes scroll messages, finds split view partners |
+| `content.js` | injected into every page: sends and applies scroll positions |
+| `popup.html`, `popup.js`, `popup.css` | popup (follows the system light or dark theme) |
+| `icons/` | extension icons |
+| `store-assets/` | store texts and screenshots, see its [README](store-assets/README.md) |
+| `.github/` | release pipeline, see [RELEASING.md](.github/RELEASING.md) |
+
+Data flow: a tab scrolls, `content.js` tells `background.js`, which tells `content.js` in the linked tabs, and they scroll to the same position.
+
+Pull requests are welcome. For larger changes, please open an issue first.
+
+## License
+
+Released under the [MIT License](LICENSE).
