@@ -3,332 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll Sync Pro</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
-      --primary-hover-gradient: linear-gradient(135deg, #4f46e5, #7c3aed);
-      --bg: #090d16;
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --card-hover-bg: rgba(255, 255, 255, 0.06);
-      --border: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 255, 255, 0.16);
-      --text: #f8fafc;
-      --text-muted: #94a3b8;
-      --danger: #ef4444;
-      --danger-bg: rgba(239, 68, 68, 0.15);
-      --success: #10b981;
-      --success-bg: rgba(16, 185, 129, 0.1);
-      --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      --glow: 0 0 16px rgba(99, 102, 241, 0.25);
-    }
-
-    * {
-      box-sizing: border-box;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
-    }
-
-    body {
-      font-family: 'Outfit', system-ui, -apple-system, sans-serif;
-      width: 340px;
-      padding: 20px;
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    /* Custom scrollbar for lists */
-    ::-webkit-scrollbar {
-      width: 4px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.25);
-    }
-
-    /* ── Header ── */
-    h2 {
-      font-size: 18px;
-      margin: 0 0 20px 0;
-      font-weight: 700;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #ffffff 60%, #94a3b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    h3 {
-      font-size: 11px;
-      margin: 18px 0 8px 0;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
-    }
-
-    /* ── Toggle Switch ── */
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 40px;
-      height: 22px;
-      -webkit-text-fill-color: initial;
-    }
-    .switch input { opacity: 0; width: 0; height: 0; }
-    .slider {
-      position: absolute; cursor: pointer;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 1px solid var(--border);
-      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 20px;
-    }
-    .slider:before {
-      position: absolute; content: "";
-      height: 14px; width: 14px;
-      left: 3px; bottom: 3px;
-      background-color: #f8fafc;
-      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 50%;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    input:checked + .slider {
-      background: var(--primary-gradient);
-      border-color: rgba(99, 102, 241, 0.5);
-      box-shadow: var(--glow);
-    }
-    input:checked + .slider:before { transform: translateX(18px); }
-
-    /* ── Segmented Control ── */
-    .segmented-control {
-      display: flex;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 4px;
-      margin-bottom: 18px;
-    }
-    .segment-btn {
-      flex: 1; text-align: center;
-      padding: 8px 4px; font-size: 13px;
-      cursor: pointer; border-radius: 8px;
-      border: none; background: transparent;
-      color: var(--text-muted); font-weight: 500;
-      font-family: inherit;
-      transition: all .2s ease;
-    }
-    .segment-btn.active {
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    }
-
-    /* ── Lists ── */
-    ul {
-      list-style: none; padding: 0; margin: 0 0 12px 0;
-      max-height: 190px; overflow-y: auto;
-      border: 1px solid var(--border); border-radius: 10px;
-      background: rgba(0, 0, 0, 0.2);
-    }
-    li {
-      font-size: 13px; padding: 10px 12px;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background 0.2s ease;
-    }
-    li:hover {
-      background: var(--card-bg);
-    }
-    li:last-child { border-bottom: none; }
-
-    .tab-label {
-      white-space: nowrap; overflow: hidden;
-      text-overflow: ellipsis;
-      display: flex; align-items: center; gap: 10px;
-      max-width: 100%; cursor: pointer;
-    }
-    .tab-favicon {
-      width: 16px; height: 16px;
-      border-radius: 4px; flex-shrink: 0;
-      background: rgba(255, 255, 255, 0.05);
-    }
-    .tab-title {
-      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-      font-weight: 400;
-    }
-
-    /* ── Buttons ── */
-    button.primary-btn {
-      background: var(--primary-gradient); color: #fff;
-      border: none; padding: 11px 16px;
-      border-radius: 10px; cursor: pointer;
-      width: 100%; font-size: 14px; font-weight: 600;
-      font-family: inherit;
-      transition: all .25s ease;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
-    }
-    button.primary-btn:hover {
-      background: var(--primary-hover-gradient);
-      box-shadow: var(--glow);
-      transform: translateY(-1px);
-    }
-    button.primary-btn:active {
-      transform: translateY(0);
-    }
-    button.primary-btn:disabled {
-      background: rgba(255, 255, 255, 0.05);
-      color: rgba(255, 255, 255, 0.25);
-      border: 1px solid var(--border);
-      box-shadow: none;
-      cursor: default;
-      transform: none;
-    }
-
-    button.icon-btn {
-      background: transparent; border: none;
-      color: var(--danger); cursor: pointer;
-      padding: 6px; border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; transition: all 0.2s ease;
-    }
-    button.icon-btn:hover {
-      background: var(--danger-bg);
-      transform: scale(1.05);
-    }
-
-    /* ── Views ── */
-    .view { display: none; }
-    .view.active {
-      display: block;
-      animation: fadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .info-box {
-      background: var(--card-bg);
-      padding: 14px 16px;
-      border-radius: 10px; font-size: 13px;
-      color: var(--text-muted); line-height: 1.6;
-      border: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-    .info-box:before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0; width: 3px;
-      background: var(--primary-gradient);
-    }
-    .info-box strong {
-      color: #fff;
-      font-weight: 600;
-    }
-
-    /* ── Pair Items ── */
-    .pair-row {
-      display: flex; flex-direction: column; width: 100%;
-    }
-    .pair-top {
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .pair-name {
-      flex-grow: 1; padding: 4px 6px;
-      border: 1px solid transparent; border-radius: 6px;
-      cursor: text; font-weight: 600; font-size: 13px;
-      color: #fff; background: transparent;
-      font-family: inherit;
-      transition: all 0.2s ease;
-    }
-    .pair-name:focus {
-      border-color: rgba(99, 102, 241, 0.4);
-      outline: none;
-      background: rgba(255, 255, 255, 0.05);
-    }
-    .tab-count {
-      font-size: 11px;
-      color: #818cf8;
-      background: rgba(99, 102, 241, 0.1);
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      padding: 2px 8px;
-      border-radius: 20px; margin-top: 5px;
-      display: inline-block;
-      font-weight: 500;
-    }
-
-    /* ── Empty state ── */
-    .empty-state {
-      padding: 24px 16px; text-align: center;
-      color: var(--text-muted); font-size: 13px;
-      background: rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
-      border: 1px dashed var(--border);
-    }
-
-    /* ── Checkbox style ── */
-    input[type="checkbox"]:not(.switch input) {
-      accent-color: #6366f1;
-      width: 16px; height: 16px;
-      flex-shrink: 0; cursor: pointer;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.05);
-    }
-  </style>
+  <title>Sync Scroll Pro</title>
+  <link rel="stylesheet" href="popup.css">
 </head>
 <body>
 
-  <!-- Header with master toggle -->
-  <h2>
-    <span>Scroll Sync Pro</span>
-    <label class="switch" title="Enable / Disable extension">
-      <input type="checkbox" id="masterToggle" checked>
+  <header class="header">
+    <!-- Brand mark: mirrors the toolbar icon (two sliders linked by a sync arrow) -->
+    <svg class="brand" viewBox="0 0 36 36" width="36" height="36" aria-hidden="true">
+      <rect width="36" height="36" rx="10" fill="#0066b1"/>
+      <rect x="8.5" y="7" width="2" height="22" rx="1" fill="#fff" opacity=".5"/>
+      <rect x="25.5" y="7" width="2" height="22" rx="1" fill="#fff" opacity=".5"/>
+      <rect x="6" y="10" width="7" height="8" rx="2" fill="#fff"/>
+      <rect x="23" y="18" width="7" height="8" rx="2" fill="#fff"/>
+      <path d="M15.2 15.5h5.4m0 0-1.8-1.8m1.8 1.8-1.8 1.8M20.8 20.5h-5.4m0 0 1.8-1.8m-1.8 1.8 1.8 1.8"
+            fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <div class="heading">
+      <h1 class="title">Sync Scroll Pro</h1>
+      <p class="status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="status" aria-live="polite">Sync is on</span>
+      </p>
+    </div>
+
+    <label class="switch" title="Turn sync on or off">
+      <input type="checkbox" id="masterToggle" role="switch" aria-label="Enable Sync Scroll Pro" checked>
       <span class="slider"></span>
     </label>
-  </h2>
+  </header>
 
-  <!-- Mode selector -->
-  <div class="segmented-control">
-    <button class="segment-btn active" data-mode="global">🌐 Global</button>
-    <button class="segment-btn" data-mode="targeted">🎯 Targeted</button>
+  <div class="segmented" role="group" aria-label="Sync mode">
+    <span class="segment-thumb" aria-hidden="true"></span>
+    <button class="segment-btn active" data-mode="global" aria-pressed="true">
+      <svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="8" cy="8" r="6.25"/>
+        <path d="M1.75 8h12.5M8 1.75c1.8 1.8 2.7 3.9 2.7 6.25S9.8 12.45 8 14.25C6.2 12.45 5.3 10.35 5.3 8S6.2 3.55 8 1.75Z"/>
+      </svg>
+      All tabs
+    </button>
+    <button class="segment-btn" data-mode="targeted" aria-pressed="false">
+      <svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m2.25 4.25 1.25 1.25 2.25-2.5M2.25 10.75 3.5 12l2.25-2.5M8.5 4.75h5.25M8.5 11.25h5.25"/>
+      </svg>
+      Selected tabs
+    </button>
   </div>
 
-  <!-- Global mode view -->
+  <!-- Global mode -->
   <div id="view-global" class="view active">
-    <div class="info-box">
-      <strong>Global Sync Active</strong><br><br>
-      Scrolling in any tab will automatically mirror the position to all other open tabs. No manual setup required.
+    <div class="card">
+      <!-- Purely decorative: two mini windows scrolling in lockstep -->
+      <div class="demo" aria-hidden="true">
+        <div class="mini">
+          <span class="mini-bar"></span>
+          <div class="mini-lines"><i class="h"></i><i></i><i class="s"></i><i></i><i class="h"></i><i class="s"></i><i></i><i></i><i class="h"></i><i class="s"></i><i></i><i></i></div>
+          <span class="mini-thumb"></span>
+        </div>
+        <span class="demo-link">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+        </span>
+        <div class="mini">
+          <span class="mini-bar"></span>
+          <div class="mini-lines"><i class="h"></i><i></i><i class="s"></i><i></i><i class="h"></i><i class="s"></i><i></i><i></i><i class="h"></i><i class="s"></i><i></i><i></i></div>
+          <span class="mini-thumb"></span>
+        </div>
+      </div>
+      <p class="note">
+        <strong>All open tabs stay in step</strong>
+        Scroll in one tab and every other tab follows. No setup needed.
+      </p>
     </div>
   </div>
 
-  <!-- Targeted mode view -->
+  <!-- Targeted mode -->
   <div id="view-targeted" class="view">
-    <h3>Available Tabs</h3>
-    <ul id="tabList"></ul>
-    <button class="primary-btn" id="pairBtn" disabled>Create Sync Group</button>
+    <!-- Split view: suggestions for tabs shown side by side + the auto-sync setting.
+         Only shown when the browser supports split view. -->
+    <div id="splitSection" class="split-section" hidden>
+      <div class="section-head">
+        <h2 class="caption">Split view</h2>
+      </div>
+      <div class="card">
+        <div id="splitPairs"></div>
+        <label class="setting">
+          <span class="setting-text">
+            <strong>Auto-sync split view</strong>
+            Side-by-side tabs scroll together.
+          </span>
+          <span class="switch">
+            <input type="checkbox" id="autoSplitToggle" role="switch" aria-label="Auto-sync split view">
+            <span class="slider"></span>
+          </span>
+        </label>
+      </div>
+    </div>
 
-    <h3>Active Sync Groups</h3>
-    <ul id="pairList"></ul>
+    <div class="section-head">
+      <h2 class="caption">Tabs in this window</h2>
+      <span class="badge" id="selCount" hidden>0 selected</span>
+    </div>
+    <ul id="tabList" class="list"></ul>
+    <p class="hint" id="pairHint">Tick two or more tabs to link them.</p>
+    <button class="primary-btn" id="pairBtn" disabled>
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+      </svg>
+      <span id="pairLabel">Link tabs</span>
+    </button>
+
+    <div class="section-head">
+      <h2 class="caption">Linked groups</h2>
+      <span class="badge" id="groupCount" hidden>0</span>
+    </div>
+    <ul id="pairList" class="list"></ul>
   </div>
 
   <script src="popup.js"></script>

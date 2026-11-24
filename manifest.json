@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Sync Scroll Pro - Tab Scroll Synchronizer",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Synchronize scrolling across multiple tabs – globally or in custom groups. Ideal for split-screen comparison & side-by-side view.",
   "homepage_url": "https://github.com/exUs541/SyncScroll",
   "icons": {
@@ -10,7 +10,8 @@
     "48":  "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "permissions": ["tabs", "storage"],
+  "permissions": ["tabs", "storage", "scripting"],
+  "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -19,7 +20,7 @@
       "48":  "icons/icon48.png",
       "128": "icons/icon128.png"
     },
-    "default_title": "Scroll Sync Pro"
+    "default_title": "Sync Scroll Pro"
   },
   "background": {
     "service_worker": "background.js"

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — Scroll Sync Pro</title>
+  <title>Privacy Policy — Sync Scroll Pro</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -32,15 +32,15 @@
 <body>
 
   <h1>Privacy Policy</h1>
-  <p class="meta">Scroll Sync Pro &nbsp;·&nbsp; Last updated: June 14, 2026</p>
+  <p class="meta">Sync Scroll Pro &nbsp;·&nbsp; Last updated: November 23, 2026</p>
 
   <div class="highlight">
-    Scroll Sync Pro does not collect, transmit, or store any personal data. All functionality runs entirely within your browser.
+    Sync Scroll Pro does not collect, transmit, or store any personal data. All functionality runs entirely within your browser.
   </div>
 
   <h2>1. Overview</h2>
   <p>
-    Scroll Sync Pro ("the Extension") is a Chrome browser extension that synchronizes scroll positions across multiple open browser tabs. This Privacy Policy explains what data the Extension accesses, how it is used, and what it does not do.
+    Sync Scroll Pro ("the Extension") is a browser extension for Chrome, Microsoft Edge and other Chromium-based browsers that synchronizes scroll positions across multiple open browser tabs. This Privacy Policy explains what data the Extension accesses, how it is used, and what it does not do.
   </p>
 
   <h2>2. Data We Do NOT Collect</h2>
@@ -59,11 +59,11 @@
     <li><strong>isEnabled</strong> — whether the extension is active (true/false)</li>
     <li><strong>syncMode</strong> — the selected mode ("global" or "targeted")</li>
     <li><strong>pairs</strong> — your named sync groups with associated tab IDs</li>
-    <li><strong>globalTabs</strong> — the list of tab IDs currently registered for global sync</li>
+    <li><strong>autoSplit</strong> — whether tabs shown side by side in a split view are synchronized automatically (true/false)</li>
   </ul>
   <p>
     This data never leaves your device and is never transmitted to any external server.
-    Tab IDs are temporary browser-session identifiers assigned by Chrome — they contain no personal information.
+    Tab IDs are temporary browser-session identifiers assigned by the browser — they contain no personal information.
   </p>
 
   <h2>4. Permissions Explained</h2>
@@ -76,6 +76,9 @@
     </li>
     <li>
       <strong>Content scripts (&lt;all_urls&gt;)</strong> — A lightweight script is injected into pages solely to listen to scroll events and receive scroll commands. It does not read, modify, or exfiltrate any page content.
+    </li>
+    <li>
+      <strong>scripting and host access (&lt;all_urls&gt;)</strong> — Used once, right after the Extension is installed or updated, to start that same bundled scroll script in tabs that are already open, so you do not have to reload them. Only the Extension's own script is injected; no remote code is loaded and no page content is read.
     </li>
   </ul>
 
@@ -101,7 +104,7 @@
   </p>
 
   <footer>
-    &copy; 2026 Scroll Sync Pro &nbsp;·&nbsp; MIT License &nbsp;·&nbsp;
+    &copy; 2026 Sync Scroll Pro &nbsp;·&nbsp; MIT License &nbsp;·&nbsp;
     <a href="https://github.com/exUs541/SyncScroll">GitHub</a>
   </footer>
 
